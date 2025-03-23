@@ -1,5 +1,6 @@
 import requests
 import os
+import json
 from dotenv import load_dotenv
 from rich import print
 
@@ -12,7 +13,7 @@ symbols = ["AAPL", "TSLA", "AMZN", "GOOGL",
            "MSFT", "NFLX", "NVDA", "FB", "BABA", "JPM"]
 
 
-def get_data() -> :
+def get_data() -> dict:
     stock_data = {}
 
     for symbol in symbols:
@@ -27,8 +28,17 @@ def get_data() -> :
     return stock_data
 
 
-def create_json():
+def create_json(data : dict) -> None:
+    if not os.path.exists("data"):
+        os.makedirs("data")
+        print("Data folder has been created")
+
+    with open("data/stock_symbols.json", "w") as file:
+        file.write(json.dumps(data, indent=4))
+    
+    print("Json file has been created in data directory")
+
 
 if __name__ == "__main__":
     data = get_data()
-    print(data)
+    create_json(data)
