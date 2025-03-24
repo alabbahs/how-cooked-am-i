@@ -14,10 +14,11 @@ symbols = ["AAPL", "TSLA", "AMZN", "GOOGL",
 
 
 def get_data() -> dict:
+    """Retrieves stock data from alpha vantage api in json format"""
     stock_data = {}
 
     for symbol in symbols:
-        url = f"{base_url}?function=TIME_SERIES_INTRADAY&symbol={symbol}&interval=5min&apikey={api_key}"
+        url = f"{base_url}?function=TIME_SERIES_DAILY&symbol={symbol}&apikey={api_key}"
         response = requests.get(url)
 
         if response.status_code == 200:
@@ -29,6 +30,7 @@ def get_data() -> dict:
 
 
 def create_json(data : dict) -> None:
+    """"""
     if not os.path.exists("data"):
         os.makedirs("data")
         print("Data folder has been created")
