@@ -7,7 +7,7 @@ def flatten_nested_json(data: dict) -> pd.DataFrame:
     records = []
 
     for symbol, details in data.items():
-        time_series = details.get("Time Series (5min)", {})
+        time_series = details.get("Time Series (Daily)", {})
         for timestamp, values in time_series.items():
             record = {
                 "symbol": symbol,
