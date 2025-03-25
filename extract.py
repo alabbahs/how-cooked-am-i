@@ -30,7 +30,7 @@ def get_data() -> dict:
 
 
 def create_json(data : dict) -> None:
-    """"""
+    """Creates json file from stock data requested from the api"""
     if not os.path.exists("data"):
         os.makedirs("data")
         print("Data folder has been created")
