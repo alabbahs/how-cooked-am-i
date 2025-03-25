@@ -11,12 +11,12 @@ def flatten_nested_json(data: dict) -> pd.DataFrame:
         for timestamp, values in time_series.items():
             record = {
                 "symbol": symbol,
-                "timestamp": timestamp,
-                "open": values["1. open"],
-                "high": values["2. high"],
-                "low": values["3. low"],
-                "close": values["4. close"],
-                "volume": values["5. volume"]
+                "timestamp": pd.to_datetime(timestamp),
+                "open": float(values["1. open"]),
+                "high": float(values["2. high"]),
+                "low": float(values["3. low"]),
+                "close": float(values["4. close"]),
+                "volume": int(values["5. volume"])
             }
             records.append(record)
 
